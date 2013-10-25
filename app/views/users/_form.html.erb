@@ -1,0 +1,58 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_birth %><br>
+    <%= f.date_select(:date_of_birth,:start_year => 1965)%>
+  </div>
+  <div class="field">
+
+<%= f.radio_button :gender, 1, :checked => true %> Male
+    <%= f.radio_button :gender, 0 %> Female
+
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_field :address %>
+  </div>
+  <% if current_user.role=="admin" %>
+  <div class="field">
+    <%= f.label :role %><br>
+    <%= f.select :role, [['admin', "admin"], ['normal', "normal"]]%>
+  </div>
+  <%end%>
+
+    <%= f.check_box :dancing %>
+    <%= f.label(:dancing, "Dancing") %>
+        <%= f.check_box :singing %>
+    <%= f.label(:singing, "singing") %>
+        <%= f.check_box :reading %>
+    <%= f.label(:reading, "reading") %>
+      <div class="field">
+    <%= f.label :hobbies , "Other hobbies" %><br>
+    <%= f.text_field :hobbies %>
+ </div>
+   
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

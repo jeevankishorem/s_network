@@ -1,0 +1,21 @@
+<div class="span8">
+    <% if @discussion.posts.any? %>
+      <h3>No of posts : <%= @discussion.posts.count %></h3>
+      <ol class="discussion">
+              <% @discussion.posts.each do |post| %>
+              <p>
+              <strong>User:</strong>
+              <%= post.user.first_name %>
+              </p>
+           
+              <p>
+              <strong>Post:</strong>
+              <%= post.content %>
+              </p>
+              <% end %>
+      
+      </ol>
+      <%= will_paginate @posts %>
+    <% end %>
+  </div>
+  

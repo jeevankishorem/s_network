@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Topic:</strong>
+  <%= @discussion.topic %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @discussion.user_id %>
+</p>
+
+  <%= render partial: 'discussion', locals: {discussions: @discussions} %>
+
+  
+
+  
+
+<%= render partial: 'newpost', locals: {newpost: @newpost} %>
+
+<!--<%= link_to 'Edit', edit_discussion_path(@discussion) %> |
+<%= link_to 'Back', discussions_path %>-->

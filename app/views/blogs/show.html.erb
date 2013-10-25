@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @blog.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @blog.content %>
+</p>
+
+<!-- <p>
+  <strong>User:</strong>
+  <%= @blog.user.first_name%>
+</p> -->
+
+
+<div class="span8">
+    <% if @blog.comments.any? %>
+      <h3>commented by  (<%= @blog.comments.count %>)</h3>
+     <% if @blog.comments.count <= 10 %>
+      <ol class="blogcomments">
+        <%= render partial: 'comment', locals: {comments: @comments} %>
+      </ol>
+      <%= will_paginate @comments %>
+      <%elsif @blog.comments.count>10%>
+      <ol class="jeevan">
+        <%= render partial: 'comment', locals: {comments: @comments} %>
+      </ol>
+      <%= will_paginate @comments %>
+      <%end%>
+     
+      <%else%>
+    <% end %>
+     <div class="new_comment">
+      <h4>Create a new Comments<h4>
+       <%= render partial: 'newcomment',locals: {comments: @comments} %>
+        
+      </div>
+      </div>
+  </div>
+       
+
+<%= link_to 'Edit', edit_blog_path(@blog) %> |
+<%= link_to 'Back', blogs_path %>

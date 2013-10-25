@@ -1,0 +1,18 @@
+<% @blog.comments.each do |comment| %>
+     <span class="title">
+    <%= comment.user.first_name %>
+    
+    <%= comment.user.last_name %>
+  </span>
+    <span class="content">
+    <%= comment.content %>
+    </span>
+
+  <span class="timestamp">
+	    Posted <%= time_ago_in_words(comment.created_at) %> ago
+<br>
+	  </span>
+    <% if current_user.role=="admin"||comment.user_id==current_user.id||@blog.user_id==current_user.id%>
+    <td><%= link_to 'Remove comment', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%end%>
+<% end %>

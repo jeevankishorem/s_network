@@ -1,0 +1,36 @@
+<h1>Welcome to home page </h1>
+
+</p>
+<%= link_to 'Update Your Profile', :controller => "users", :action => "edit", :id => current_user.id  %>
+<p>
+</p>
+<%=link_to "View your blogs", :controller => "users", :action => "show", :id => current_user.id %>
+<p>
+</p>
+<%= link_to 'Create a new Blog', new_blog_path %>
+<p>
+</p>
+<%= link_to 'create a new discussion', new_discussion_path %>
+<p>
+</p>
+<%= link_to 'View all Discussions', discussions_path %>
+<p>
+</p>
+
+<div class="span8">
+    <% if @blogs.any? %>
+      <h3>Blogs(<%= @blogs.count %>)</h3>
+      <ol class="blogs">
+        <%= render partial: 'blogslist', locals: {blogs: @blogs} %>
+      </ol>
+      <%= will_paginate @blogs %>
+    <% end %>
+    
+  </div>
+<% if current_user.role=="admin" %>
+<div>
+<%= button_to "List of Users", users_path ,:method => :get %>
+<%= button_to "List of Blogs", blogs_path ,:method => :get %>
+<%= button_to "List of Discussions", discussions_path ,:method => :get %>
+</div>
+<%end%>

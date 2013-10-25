@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+
+<script>
+$(function() {
+$( "#accordion" ).accordion();
+});
+</script>
+</head>
+<body>
+<div id="accordion">
+
+<% blogs.each do |blog| %>
+	<li>
+		<% if blog.comments.count<5%>
+		<h3><span class="title"><%= blog.title %></span>
+			<%else%>
+			<h3><span class="titlehigh"><%= blog.title %></span>
+				<%end%>
+		<h3><span class="title"><%= blog.title %></span></h3>
+		<%= link_to "View comments for this blog", blog_path(blog.id) %>
+		<div>
+	  		<span class="content"><%= blog.content %></span>
+	  		<span class="timestamp">
+	    Posted <%= time_ago_in_words(blog.created_at) %> ago.
+
+	  		</span>
+	  	</span>
+	  </div>
+	</li>
+<% end %>
+</div>
+</body>
+</html>
+
+
+

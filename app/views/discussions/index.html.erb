@@ -1,0 +1,37 @@
+<h1>Listing discussions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @discussions.each do |discussion| %>
+      <tr>
+        <td><%= discussion.topic %></td>
+        <td><%= discussion.user_id %></td>
+        <td><%= link_to 'Show', discussion %></td>
+        <% if discussion.user_id==current_user.id%>
+        <td><%= link_to 'Edit', edit_discussion_path(discussion) %></td>
+        <%else%>
+        <td>      </td>
+        <%end%>
+        <% if current_user.role=="admin" || discussion.user_id==current_user.id %>
+        <td><%= link_to 'Destroy', discussion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%else%>
+        <td>      </td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Discussion', new_discussion_path %>

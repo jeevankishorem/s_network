@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @user.last_name %>
+</p>
+
+<p>
+  <strong>Date of birth:</strong>
+  <%= @user.date_of_birth %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @user.gender %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @user.address %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @user.role %>
+</p>
+
+<p>
+  <strong>Hobbies:</strong>
+  <%= @user.hobbies %>
+</p>
+<div class="span8">
+    <% if @user.blogs.any? %>
+      <h3>Blogs by <%= @user.first_name %> <%= @user.last_name %> (<%= @user.blogs.count %>)</h3>
+      <ol class="blogs">
+        <%= render partial: 'blog', locals: {blogs: @blogs} %>
+      </ol>
+      <%= will_paginate @blogs %>
+    <% end %>
+    <div class="new_blog">
+      <h4>Create a new Blog<h4>
+       <%= render partial: 'newblog',locals: {blogs: @blogs} %>
+        
+      </div>
+  </div>
+       
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
