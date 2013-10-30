@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131016125442) do
+ActiveRecord::Schema.define(version: 20131029130340) do
 
   create_table "blogs", force: true do |t|
     t.string   "title"
@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(version: 20131016125442) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "friendships", force: true do |t|
+    t.integer  "sender_id"
+    t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "friendships", ["friend_id"], name: "index_friendships_on_friend_id"
+  add_index "friendships", ["sender_id", "friend_id"], name: "index_friendships_on_sender_id_and_friend_id", unique: true
+  add_index "friendships", ["sender_id"], name: "index_friendships_on_sender_id"
 
   create_table "members", force: true do |t|
     t.string   "email",                  default: "", null: false

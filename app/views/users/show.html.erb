@@ -34,7 +34,15 @@
   <strong>Hobbies:</strong>
   <%= @user.hobbies %>
 </p>
+
+
 <div class="span8">
+    <section>
+      <%= render partial: 'friends' %>
+    </section>
+    <% if @user != current_user%>
+    <%= render partial: 'friendrequest_form' if signed_in? %>
+    <% end%>
     <% if @user.blogs.any? %>
       <h3>Blogs by <%= @user.first_name %> <%= @user.last_name %> (<%= @user.blogs.count %>)</h3>
       <ol class="blogs">
@@ -50,6 +58,7 @@
   </div>
        
 
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<% if @user == current_user%>
+<%= link_to 'Update Your profile', edit_user_path(@user) %> |
+<%end%><!-- 
+<%= link_to 'Back', users_path %> -->

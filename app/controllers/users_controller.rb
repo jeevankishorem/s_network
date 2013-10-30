@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :friends, :reverse_friends]
 
   # GET /users
   # GET /users.json
@@ -67,9 +67,28 @@ class UsersController < ApplicationController
     end
   end
 
+  def friends
+    @title = "#{current_user.first_name} #{current_user.last_name} is following"
+    @user = User.find(params[:id])
+    @users = @user.friend_users.paginate(page: params[:page])
+    render 'show_friends'
+  end
+
+  def reverse_friends
+    @title = "Friends following #{current_user.first_name}"
+    @user = User.find(params[:id])
+    @users = @user.reverse_friend_users.paginate(page: params[:page])
+    render 'show_friends'
+  end
   def home 
     @users = User.all
+    # @blogs = Blog.paginate(:per_page => 5, :page => params[:page])
+    @blogs = current_user.feed.paginate(page: params[:page])
+  end
+  def allblogs 
+    @users = User.all
     @blogs = Blog.paginate(:per_page => 5, :page => params[:page])
+    # @blogs = current_user.feed.paginate(page: params[:page])
   end
   # DELETE /users/1
   # DELETE /users/1.json
@@ -89,6 +108,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :date_of_birth, :gender, :address, :role, :hobbies,:dancing,:singing,:reading)
+      params.require(:user).permit(:first_name, :last_name, :date_of_birth, :gender, :address, :role, :hobbies,:dancing,:singing,:reading,:email,:encrypted_password)
     end
 end

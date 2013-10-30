@@ -1,0 +1,58 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1><%= @user.first_name %></h1>
+      <span><%= link_to "view your profile", @user %></span>
+      <span><b>Blogs:</b> <%= @user.blogs.count %></span>
+    </section>
+    <section>
+      <%= render partial: 'friends' %>
+    </section>
+  </aside>
+  <div class="span8">
+    <h3><%= @title %></h3>
+    
+
+<table>
+  <thead>
+    <tr>
+      <th>E mail ID</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Date of birth</th>
+      <th>Gender</th>
+      <th>Address</th>
+      <th>Role</th>
+      <th>Hobbies</th>
+      <th></th>
+      <!-- <th></th>
+      <th></th> -->
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <% if user != current_user%>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.date_of_birth %></td>
+        <td><%= user.gender %></td>
+        <td><%= user.address %></td>
+        <td><%= user.role %></td>
+        <td><%= user.hobbies %></td>
+        <td><%= link_to 'View Profile', user %></td>
+        <!-- <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= will_paginate @userspage %>
+  </div>
+</div>

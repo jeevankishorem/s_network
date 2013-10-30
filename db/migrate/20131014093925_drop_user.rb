@@ -1,4 +1,4 @@
-class DropUser < ActiveRecord::Migration
+lass DropUser < ActiveRecord::Migration
   def change
   end
 end

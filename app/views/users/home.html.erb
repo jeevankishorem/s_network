@@ -1,10 +1,19 @@
 <h1>Welcome to home page </h1>
 
+	  
+      <section>
+        <%= render partial: 'friends' %>
+      </section>
+      
+
 </p>
 <%= link_to 'Update Your Profile', :controller => "users", :action => "edit", :id => current_user.id  %>
 <p>
 </p>
 <%=link_to "View your blogs", :controller => "users", :action => "show", :id => current_user.id %>
+<p>
+  </p>
+<%=link_to "View all blog", :controller => "users", :action => "allblogs" %>
 <p>
 </p>
 <%= link_to 'Create a new Blog', new_blog_path %>

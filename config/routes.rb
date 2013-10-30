@@ -14,9 +14,15 @@ SNetwork::Application.routes.draw do
   resources :users do
     collection do 
       get 'home'
+      get 'allblogs'
+    end
+    member do
+      get :friends, :reverse_friends
     end
   end
 
+
+  resources :friendships
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name, :required => true, length: { in: 1..20 } %>
   </div>
   <div class="field">
     <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, :required => true, length: { in: 1..20 } %>
   </div>
   <div class="field">
     <%= f.label :date_of_birth %><br>
@@ -31,7 +31,7 @@
   </div>
   <div class="field">
     <%= f.label :address %><br>
-    <%= f.text_field :address %>
+    <%= f.text_field :address, :required => true, length: { in: 10..60 } %>
   </div>
   <% if current_user.role=="admin" %>
   <div class="field">

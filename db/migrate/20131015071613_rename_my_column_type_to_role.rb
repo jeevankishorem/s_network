@@ -2,7 +2,7 @@ class RenameMyColumnTypeToRole < ActiveRecord::Migration
   def change
 
 
-    # rename_column :users, :type, :role
+    rename_column :users, :type, :role
  
 
 

@@ -1,0 +1,14 @@
+<section>
+        <%= render partial: 'friends' %>
+      </section>
+
+<div class="span8">
+    <% if @blogs.any? %>
+      <h3>Blogs(<%= @blogs.count %>)</h3>
+      <ol class="blogs">
+        <%= render partial: 'blogslist', locals: {blogs: @blogs} %>
+      </ol>
+      <%= will_paginate @blogs %>
+    <% end %>
+    
+  </div>
